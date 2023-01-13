@@ -2,18 +2,25 @@
 $( document ).ready(function() {
   let max = 300;
   createCircle(Math.floor(Math.random() * max),Math.floor(Math.random() * max),false, false);
+
+  $('body').click(function(e) {
+    createCircle(e.clientY - 30, e.clientX -30, false, true, 500, true);
+  })
 });
+
+
 
 let colors = ['#ff3751', '#fff', 'rgba(218,218,218)', '#0e0cff', '#859ed4']
 
-function createCircle(x,y, relatedElem, dies){
+function createCircle(x,y, relatedElem, dies, dieTime, static){
   let circle = $('<div></div>');
   circle.addClass('circle');
 
   // should add in random space
   $('body').append(circle);
 
-  startMoving(circle)
+  if (!static) {startMoving(circle)}
+
 
   makeDraggable(circle);
 
@@ -38,7 +45,7 @@ function createCircle(x,y, relatedElem, dies){
 
   circle.click(backgroundChange);
 
-  if (dies) {setTimeout(function() {circle.remove()}, 10000);}
+  if (dies) {setTimeout(function() {circle.remove()}, dieTime || 10000);}
 }
 
 function startMoving(elem) {
