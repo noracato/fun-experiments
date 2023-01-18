@@ -16,3 +16,23 @@ body {
   stroke:#ff9824;
   stroke-width:2;
 }
+
+.svg-triangle polygon:hover {
+  cursor: pointer;
+}
+
+.grid {
+  position: absolute;
+  z-index: -1;
+  border: 1px solid black;
+}
+
+.grid-x {
+  height: 0;
+  width: 100vw;
+}
+
+.grid-y {
+  height: 100vh;
+  width: 0;
+}
