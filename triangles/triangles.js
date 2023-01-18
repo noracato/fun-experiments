@@ -1,5 +1,7 @@
 let trianglePercentage = 10;
 let rotations = 0;
+let marginSnap = 0.5; // fraction
+let padding = 4;//pixels
 
 let gridsX = [], gridsY = [];
 
@@ -24,11 +26,10 @@ function createTriangle(x,y) {
   triangle.data('size', 1);
   triangle.find('polygon').click(enlarge);
 
-  // var newCoords = coordinatesForGrid(x,y);
-  triangle.css('top', x + 'px');
-  triangle.css('left', y + 'px');
+  triangle.css('top', withinGrid(x,'x') + 'px');
+  triangle.css('left', withinGrid(y,'y') + 'px');
 
-  drawGrid(x,y);
+  // drawGrid(x,y);
 
   incrementRotation();
 
@@ -87,8 +88,8 @@ function createSVGString(setPercentage) {
     setPercentage = trianglePercentage
   }
   return '<svg xmlns="http://www.w3.org/2000/svg" class="svg-triangle" style="height:' +
-    $(window).height()/setPercentage + 4 + 'px; width:' +
-    $(window).width()/setPercentage + 4 + 'px;"' +
+    $(window).height()/setPercentage + padding + 'px; width:' +
+    $(window).width()/setPercentage + padding + 'px;"' +
     '><polygon ' +
     polyPoints(setPercentage) +
     '/></svg>'
@@ -105,6 +106,8 @@ function drawGrid(x,y) {
 }
 
 function drawGridLine(coordinate, direction) {
+  if (isAlreadyAGridline(coordinate, direction)) {return;}
+
   let gridline = $('<div></div>');
   gridline.addClass('grid');
 
@@ -123,29 +126,48 @@ function drawGridLine(coordinate, direction) {
   $('body').append(gridline);
 }
 
-// this function needs to be called still
-function coordinatesForGrid(x,y){
-  let marginX = [$(window).width()/setPercentage + 10,$(window).width()/setPercentage - 10];
-  let marginY = [$(window).height()/setPercentage + 10,$(window).height()/setPercentage - 10];
 
-  var newX = withinGrid(x, gridsX, marginX);
-  if (newX == x){
-    drawGridLine(x, 'x');
+function withinGrid(number, direction) {
+  var grids, extraSnap;
+  if (direction == 'x'){
+    grids = gridsX;
+    extraSnap = $(window).height()/trianglePercentage + padding;
+  } else {
+    grids = gridsY;
+    extraSnap = $(window).width()/trianglePercentage + padding;
   }
 
-  var newY = withinGrid(y, gridsY, marginY);
-  if (newY == y){
-    drawGridLine(y, 'y');
-  }
+  var currentMarginSnap = extraSnap * marginSnap;
 
-  return [newX, newY]
-}
-
-function withinGrid(number, grids, margins) {
   for (var i = 0; i < grids.length; i++) {
-    if (number < grids[i] + margins[0] && number > grids[i] - margins[1]) {
+    if (number < grids[i] + currentMarginSnap && number > grids[i] - currentMarginSnap) {
+      drawGridLine(grids[i] + extraSnap, direction);
       return grids[i];
+    } else if (number + extraSnap < grids[i] + currentMarginSnap && number + extraSnap > grids[i] - currentMarginSnap){
+      drawGridLine(grids[i] - extraSnap, direction);
+      return grids[i] - extraSnap ;
     }
   }
+
+  // Draw gridlines
+  drawGridLine(number, direction);
+  drawGridLine(number + extraSnap, direction);
+
   return number;
+}
+
+
+function isAlreadyAGridline(coordinate, direction) {
+  var grids;
+  if (direction == 'x'){
+    grids = gridsX;
+  } else {
+    grids = gridsY;
+  }
+
+  for (var i = 0; i < grids.length; i++) {
+    if (coordinate == grids[i]) {return true;}
+  }
+
+  return false;
 }

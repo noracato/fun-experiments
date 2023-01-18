@@ -14,7 +14,7 @@ body {
 .svg-triangle polygon {
   fill: none;
   stroke:#ff9824;
-  stroke-width:2;
+  stroke-width:4;
 }
 
 .svg-triangle polygon:hover {
@@ -24,7 +24,8 @@ body {
 .grid {
   position: absolute;
   z-index: -1;
-  border: 1px solid black;
+  border: 0.25px solid black;
+  display: none;
 }
 
 .grid-x {
