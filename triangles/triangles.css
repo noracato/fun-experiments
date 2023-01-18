@@ -1,0 +1,18 @@
+body {
+  height: 100vh;
+  background-color: #ffe9a7;
+}
+
+.triangle {
+  position: absolute;
+}
+
+.svg-triangle {
+  padding: 2px;
+}
+
+.svg-triangle polygon {
+  fill: none;
+  stroke:#ff9824;
+  stroke-width:2;
+}
