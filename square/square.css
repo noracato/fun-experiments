@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.square {
+    width: 3vw;
+    height: 3vw;
+}
+
+.state-1 {
+    background-color: #eee;
+}
+.state-2 {
+    background-color: #000;
+}
