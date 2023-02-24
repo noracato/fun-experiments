@@ -33,7 +33,6 @@ function createSquare(row, i){
 
     let innerCircle = $('<div></div>');
     innerCircle.addClass('full');
-    innerCircle.addClass('invert');
     sq.append(innerCircle);
 
     row.append(sq);
@@ -53,12 +52,10 @@ function flip(sq) {
 }
 
 function neighbourWithSameState(square, iterate=true) {
-
-    // TODO: iteration counter so we can also invoke the neighbours, and return if iteration is more than one
-
     let sq = $(square);
     let state = 'state-1';
-    if (sq.hasClass('state-2')) { state = 'state-2'; }
+    let otherState = 'state-2';
+    if (sq.hasClass('state-2')) { state = 'state-2'; otherState='state-1'}
 
 
     let rowNumberUp = sq.parent().data('number') + 1;
@@ -68,27 +65,37 @@ function neighbourWithSameState(square, iterate=true) {
     // left, rght, up, down
     let hasSame = [0,0,0,0];
 
+    // TODO: something with neighbour having inverterd stuff AND being the other state
+
     if (sq.data('number') -1 >= 0){
-        if (sameState(siblings[sq.data('number') - 1], state)) {
+        var neighbour = $(siblings[sq.data('number') - 1]);
+        if (sameState(neighbour, state) || invertedNeighbour(neighbour, otherState)) {
             hasSame[0] = 1;
         }
-        if (iterate) {neighbourWithSameState(siblings[sq.data('number') - 1], false);}
-    } if (sq.data('number') + 1 < siblings.length){
-        if (sameState(siblings[sq.data('number') + 1], state)) {
+        if (iterate) {neighbourWithSameState(neighbour, false);}
+    } if (sq.data('number') + 1 < siblings.length ){
+        var neighbour = $(siblings[sq.data('number') + 1]);
+        if (sameState(neighbour, state) || invertedNeighbour(neighbour, otherState)) {
             hasSame[1] = 1;
         }
-        if (iterate) {neighbourWithSameState(siblings[sq.data('number') + 1], false);}
+        if (iterate) {neighbourWithSameState(neighbour, false);}
     } if (rowNumberUp >= 0){
-        if (sameState($($('.row')[rowNumberUp]).children()[sq.data('number')], state)) {
+        var neighbour = $($($('.row')[rowNumberUp]).children()[sq.data('number')]);
+        if (sameState(neighbour, state) || invertedNeighbour(neighbour, otherState)) {
             hasSame[2] = 1;
         }
-        if (iterate) {neighbourWithSameState($($('.row')[rowNumberUp]).children()[sq.data('number')], false);}
+        if (iterate) {neighbourWithSameState(neighbour, false);}
     } if (rowNumberDown < $('.row').length){
-        if (sameState($($('.row')[rowNumberDown]).children()[sq.data('number')],state)) {
+        var neighbour = $($($('.row')[rowNumberDown]).children()[sq.data('number')]);
+        if (sameState(neighbour, state) || invertedNeighbour(neighbour, otherState)){
             hasSame[3] = 1;
         }
-        if (iterate) {neighbourWithSameState($($('.row')[rowNumberDown]).children()[sq.data('number')], false);}
+        if (iterate) {neighbourWithSameState(neighbour, false);}
     }
+
+    // if our negighrbours state is inverted - we invert our hasSame?
+
+
 
     let circle = $(sq.children()[0]);
     circle.removeClass();
@@ -102,7 +109,6 @@ function neighbourWithSameState(square, iterate=true) {
             sq.addClass('invert-sq');
         } else {
             circle.addClass('full');
-            circle.addClass('invert');
         }
         return;
     }
@@ -112,7 +118,6 @@ function neighbourWithSameState(square, iterate=true) {
     if (hasSame[0] == hasSame[1] && hasSame[1] == hasSame[2]) {
         if (hasSame[0] == 1){
             circle.addClass('full');
-            circle.addClass('invert');
             return;
         }
     }
@@ -120,7 +125,6 @@ function neighbourWithSameState(square, iterate=true) {
     if (hasSame[0] == hasSame[1] && hasSame[1] == hasSame[3]) {
         if (hasSame[0] == 1){
             circle.addClass('full');
-            circle.addClass('invert');
             return;
         }
     }
@@ -128,7 +132,6 @@ function neighbourWithSameState(square, iterate=true) {
     if (hasSame[0] == hasSame[2] && hasSame[2] == hasSame[3]) {
         if (hasSame[0] == 1){
             circle.addClass('full');
-            circle.addClass('invert');
             return;
         }
     }
@@ -136,7 +139,6 @@ function neighbourWithSameState(square, iterate=true) {
     if (hasSame[1] == hasSame[2] && hasSame[2] == hasSame[3]) {
         if (hasSame[1] == 1){
             circle.addClass('full');
-            circle.addClass('invert');
             return;
         }
     }
@@ -182,13 +184,11 @@ function neighbourWithSameState(square, iterate=true) {
     if (hasSame[1] == hasSame[0]) {
         if (hasSame[1] == 1){
             circle.addClass('full');
-            circle.addClass('invert');
             return;
         }
     } if (hasSame[2] == hasSame[3]) {
         if (hasSame[2] == 1){
             circle.addClass('full');
-            circle.addClass('invert');
             return;
         }
     }
@@ -224,3 +224,6 @@ function sameState( obj, state) {
     return $(obj).hasClass(state);
 }
 
+function invertedNeighbour(neighbour, otherState) {
+    return sameState($(neighbour), otherState) && $(neighbour).hasClass('invert-sq')
+}

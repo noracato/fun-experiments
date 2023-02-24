@@ -54,7 +54,12 @@ body {
 .state-1 .invert {
     background-color: #eee;
 }
-
+.state-2 .full {
+    background-color: #000;
+}
+.state-1 .full {
+    background-color: #eee;
+}
 /* two sided */
 
 .right-down {
