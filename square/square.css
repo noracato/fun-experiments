@@ -20,6 +20,70 @@ body {
 .state-1 {
     background-color: #eee;
 }
+.state-1.invert-sq {
+    background-color: #000;
+}
+
 .state-2 {
     background-color: #000;
+}
+.state-2.invert-sq {
+    background-color: #eee;
+}
+
+.state-1 div {
+    background-color: #000;
+    width: 3vw;
+    height: 3vw;
+}
+.state-2 div {
+    background-color: #eee;
+    width: 3vw;
+    height: 3vw;
+}
+
+.inner {
+    border-radius: 1.5vw;
+}
+.full {
+    border-radius: none;
+}
+.state-2 .invert {
+    background-color: #000;
+}
+.state-1 .invert {
+    background-color: #eee;
+}
+
+/* two sided */
+
+.right-down {
+    border-top-left-radius: 1.5vw;
+}
+.left-down {
+    border-top-right-radius: 1.5vw;
+}
+.right-top {
+    border-bottom-left-radius: 1.5vw;
+}
+.left-top {
+    border-bottom-right-radius: 1.5vw;
+}
+
+/* one sided */
+.left {
+    border-top-right-radius: 1.5vw;
+    border-bottom-right-radius: 1.5vw;
+}
+.right {
+    border-top-left-radius: 1.5vw;
+    border-bottom-left-radius: 1.5vw;
+}
+.top {
+    border-bottom-right-radius: 1.5vw;
+    border-bottom-left-radius: 1.5vw;
+}
+.down {
+    border-top-left-radius: 1.5vw;
+    border-top-right-radius: 1.5vw;
 }
