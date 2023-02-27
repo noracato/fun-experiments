@@ -39,6 +39,9 @@ body {
     width: 3vw;
     height: 3vw;
 }
+.straight-sq {
+    display: flex;
+}
 
 .state-1 {
     background-color: var(--state-1-color);
@@ -71,6 +74,11 @@ body {
 .full {
     border-radius: none;
 }
+.straight {
+    width: 20% !important;
+    height: 20% !important;
+    border-radius: none !important;
+}
 .state-2 .invert {
     background-color: var(--state-2-color);
 }
@@ -97,6 +105,13 @@ body {
 .left-top {
     border-bottom-right-radius: var(--border-radius-small);
 }
+.top-down.straight {
+    height: 100%;
+    margin: 0 auto;
+}
+.left-right.straight {
+    width: 100%;
+}
 
 /* one sided */
 .left {
@@ -115,6 +130,14 @@ body {
     border-top-left-radius: var(--border-radius-small);
     border-top-right-radius: var(--border-radius-small);
 }
+.top.straight {
+    height: 50%;
+
+}
+.down.straight {
+    height: 50%;
+    align-self: flex-end;
+}
 
 /* logic-state 2 */
 .right-down-s2 {
@@ -128,4 +151,25 @@ body {
 }
 .left-top-s2 {
     border-bottom-right-radius: 3vw;
+}
+
+@-webkit-keyframes blinker {
+    from { opacity: 1.0; }
+    to { opacity: 0.0; }
+}
+@keyframes blinker {
+    from { opacity: 1.0; }
+    to { opacity: 0.0; }
+}
+
+.blink {
+    -webkit-animation-name: blinker;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: cubic-bezier(.5, 0, 1, 1);
+    -webkit-animation-duration: 1.7s;
+
+    animation-name: blinker;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.5, 0, 1, 1);
+    animation-duration: 1.7s;
 }

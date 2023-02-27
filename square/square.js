@@ -5,10 +5,12 @@ let logic_state = 1
 $( document ).ready(fillScreen);
 
 function changeVars(){
-    if (logic_state == 1 ){
-        logic_state = 0;
-    } else {
+    if (logic_state == 0 ){
         logic_state = 1;
+    } else if (logic_state == 1){
+        logic_state = 2;
+    } else {
+        logic_state = 0;
     }
 
 }
@@ -63,11 +65,7 @@ function flip(sq) {
 
 // maybe we need this later
 function logicForState(sq) {
-    if (logic_state == 1) {
-        neighbourWithSameState(sq);
-    } else {
-        neighbourWithSameState(sq);
-    }
+    neighbourWithSameState(sq);
 }
 
 function neighbourWithSameState(square, iterate=true) {
@@ -130,13 +128,20 @@ function invertedNeighbour(neighbour, otherState) {
 
 
 function setCss(sq, circle, hasSame, state){
-    if (logic_state == 1) {
+    if (logic_state == 2){
+        $(sq).addClass('straight-sq');
+        $(circle).addClass('straight');
+    } else {
+        $(sq).removeClass('straight-sq');
+    }
+
+    if (logic_state == 1 || logic_state == 2) {
         if (fourSided(sq, circle, ...hasSame)) { return; }
         if (threeSided(sq, circle, ...hasSame)) { return; }
         if (twoSided(sq, circle, ...hasSame)) { return; }
         if (oneSided(sq, circle, ...hasSame)) { return; }
     } else if (state == 'state-2'){
-        // if (fourOrThreeSidedLS2(sq, circle, ...hasSame)) { return; }
+        if (fourOrThreeSidedLS2(sq, circle, ...hasSame)) { return; }
         if (twoSidedLS2(sq, circle, ...hasSame)) { return; }
         oneSidedLS2(sq, circle, ...hasSame)
     } else {
@@ -226,34 +231,51 @@ function fourSided(sq, circ, left=0, right=0, top=0, down=0){
 
 function fourOrThreeSidedLS2(sq, circ, left=0, right=0, top=0, down=0){
     var circle = $(circ);
-    // Do nothing
-    if (left == right && right == top && left == 1){
+    if (left == right && right == top && top == down && left==1) {
         circle.addClass('invert');
         circle.addClass('inner');
+        circle.addClass('blink');
         $(sq).addClass('invert-sq');
-    } else if (left == right && right == down && left == 1){
-        circle.addClass('invert');
-        circle.addClass('inner');
-        $(sq).addClass('invert-sq');
-    } else if (left == top && top == down && left == 1){
-        circle.addClass('invert');
-        circle.addClass('inner');
-        $(sq).addClass('invert-sq');
-    } else if (right == top && top == down && right == 1){
-        circle.addClass('invert');
-        circle.addClass('inner');
-        $(sq).addClass('invert-sq');
-    } else {
-        return false;
+        return true;
     }
+
+    // Do nothing
+    // if (left == right && right == top && left == 1){
+    //     circle.addClass('invert');
+    //     circle.addClass('inner');
+    //     $(sq).addClass('invert-sq');
+    // } else if (left == right && right == down && left == 1){
+    //     circle.addClass('invert');
+    //     circle.addClass('inner');
+    //     $(sq).addClass('invert-sq');
+    // } else if (left == top && top == down && left == 1){
+    //     circle.addClass('invert');
+    //     circle.addClass('inner');
+    //     $(sq).addClass('invert-sq');
+    // } else if (right == top && top == down && right == 1){
+    //     circle.addClass('invert');
+    //     circle.addClass('inner');
+    //     $(sq).addClass('invert-sq');
+    // } else {
+    //     return false;
+    // }
+
+    return false;
 }
 
 function twoSidedLS2(sq, circ, left=0, right=0, top=0, down=0){
     var circle = $(circ);
 
-    if ((right == left && right == 1) || (top == down && top == 1)){
+    if ((top == down && top == 1)){
         circle.addClass('invert');
         circle.addClass('inner');
+        circle.addClass('top-down');
+        $(sq).addClass('invert-sq');
+        return true;
+    }else if ((right == left && right == 1)){
+        circle.addClass('invert');
+        circle.addClass('inner');
+        circle.addClass('left-right');
         $(sq).addClass('invert-sq');
         return true;
     }
