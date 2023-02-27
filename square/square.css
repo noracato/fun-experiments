@@ -8,6 +8,22 @@
 body {
     margin: 0;
 }
+.header {
+    background-color: var(--state-2-color);
+}
+.header button {
+    border: none;
+    background: none;
+    color: var(--state-1-color);
+    margin-left: 10px;
+}
+.header button:hover {
+    cursor: pointer;
+    color: #ddd;
+}
+.header button:active {
+    color: #eee;
+}
 
 .container {
     display: flex;
