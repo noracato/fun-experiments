@@ -65,37 +65,34 @@ function neighbourWithSameState(square, iterate=true) {
     // left, rght, up, down
     let hasSame = [0,0,0,0];
 
-    // TODO: something with neighbour having inverterd stuff AND being the other state
-
     if (sq.data('number') -1 >= 0){
         var neighbour = $(siblings[sq.data('number') - 1]);
         if (sameState(neighbour, state) || invertedNeighbour(neighbour, otherState)) {
             hasSame[0] = 1;
         }
         if (iterate) {neighbourWithSameState(neighbour, false);}
-    } if (sq.data('number') + 1 < siblings.length ){
+    } else { hasSame[0] = 1; }
+    if (sq.data('number') + 1 < siblings.length ){
         var neighbour = $(siblings[sq.data('number') + 1]);
         if (sameState(neighbour, state) || invertedNeighbour(neighbour, otherState)) {
             hasSame[1] = 1;
         }
         if (iterate) {neighbourWithSameState(neighbour, false);}
-    } if (rowNumberUp >= 0){
+    } else { hasSame[1] = 1; }
+    if (rowNumberUp >= 0){
         var neighbour = $($($('.row')[rowNumberUp]).children()[sq.data('number')]);
         if (sameState(neighbour, state) || invertedNeighbour(neighbour, otherState)) {
             hasSame[2] = 1;
         }
         if (iterate) {neighbourWithSameState(neighbour, false);}
-    } if (rowNumberDown < $('.row').length){
+    } else { hasSame[2] = 1; }
+    if (rowNumberDown < $('.row').length){
         var neighbour = $($($('.row')[rowNumberDown]).children()[sq.data('number')]);
         if (sameState(neighbour, state) || invertedNeighbour(neighbour, otherState)){
             hasSame[3] = 1;
         }
         if (iterate) {neighbourWithSameState(neighbour, false);}
-    }
-
-    // if our negighrbours state is inverted - we invert our hasSame?
-
-
+    } else { hasSame[3] = 1; }
 
     let circle = $(sq.children()[0]);
     circle.removeClass();
@@ -181,16 +178,12 @@ function neighbourWithSameState(square, iterate=true) {
         }
     }
     // right, left or top, down
-    if (hasSame[1] == hasSame[0]) {
-        if (hasSame[1] == 1){
-            circle.addClass('full');
-            return;
-        }
-    } if (hasSame[2] == hasSame[3]) {
-        if (hasSame[2] == 1){
-            circle.addClass('full');
-            return;
-        }
+    if (hasSame[1] == hasSame[0] && hasSame[1] == 1){
+        circle.addClass('full');
+        return;
+    } if (hasSame[2] == hasSame[3] && hasSame[2] == 1){
+        circle.addClass('full');
+        return;
     }
 
     // with one

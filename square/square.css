@@ -1,3 +1,10 @@
+:root {
+    --border-radius-small: 25%;
+    --state-1-color: #eee;
+    --state-2-color: #000;
+  }
+
+
 body {
     margin: 0;
 }
@@ -18,26 +25,26 @@ body {
 }
 
 .state-1 {
-    background-color: #eee;
+    background-color: var(--state-1-color);
 }
 .state-1.invert-sq {
-    background-color: #000;
+    background-color: var(--state-2-color);
 }
 
 .state-2 {
-    background-color: #000;
+    background-color: var(--state-2-color);
 }
 .state-2.invert-sq {
-    background-color: #eee;
+    background-color: var(--state-1-color);
 }
 
 .state-1 div {
-    background-color: #000;
+    background-color: var(--state-2-color);
     width: 3vw;
     height: 3vw;
 }
 .state-2 div {
-    background-color: #eee;
+    background-color: var(--state-1-color);
     width: 3vw;
     height: 3vw;
 }
@@ -49,46 +56,46 @@ body {
     border-radius: none;
 }
 .state-2 .invert {
-    background-color: #000;
+    background-color: var(--state-2-color);
 }
 .state-1 .invert {
-    background-color: #eee;
+    background-color: var(--state-1-color);
 }
 .state-2 .full {
-    background-color: #000;
+    background-color: var(--state-2-color);
 }
 .state-1 .full {
-    background-color: #eee;
+    background-color: var(--state-1-color);
 }
 /* two sided */
 
 .right-down {
-    border-top-left-radius: 25%;
+    border-top-left-radius: var(--border-radius-small);
 }
 .left-down {
-    border-top-right-radius: 25%;
+    border-top-right-radius: var(--border-radius-small);
 }
 .right-top {
-    border-bottom-left-radius: 25%;
+    border-bottom-left-radius: var(--border-radius-small);
 }
 .left-top {
-    border-bottom-right-radius: 25%;
+    border-bottom-right-radius: var(--border-radius-small);
 }
 
 /* one sided */
 .left {
-    border-top-right-radius: 25%;
-    border-bottom-right-radius: 25%;
+    border-top-right-radius: var(--border-radius-small);
+    border-bottom-right-radius: var(--border-radius-small);
 }
 .right {
-    border-top-left-radius: 25%;
-    border-bottom-left-radius: 25%;
+    border-top-left-radius: var(--border-radius-small);
+    border-bottom-left-radius: var(--border-radius-small);
 }
 .top {
-    border-bottom-right-radius: 25%;
-    border-bottom-left-radius: 25%;
+    border-bottom-right-radius: var(--border-radius-small);
+    border-bottom-left-radius: var(--border-radius-small);
 }
 .down {
-    border-top-left-radius: 25%;
-    border-top-right-radius: 25%;
+    border-top-left-radius: var(--border-radius-small);
+    border-top-right-radius: var(--border-radius-small);
 }
