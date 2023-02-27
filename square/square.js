@@ -1,7 +1,17 @@
 let squareViewWidth = 3;
 let squareWidth = $(window).width() / (100/ squareViewWidth);
+let logic_state = 1
 
 $( document ).ready(fillScreen);
+
+function changeVars(){
+    if (logic_state == 1 ){
+        logic_state = 0;
+    } else {
+        logic_state = 1;
+    }
+
+}
 
 function fillScreen() {
     let amount = $(window).height() / squareWidth;
@@ -42,13 +52,22 @@ function flip(sq) {
     if (sq.hasClass('state-1')) {
         sq.removeClass('state-1');
         sq.addClass('state-2');
-        neighbourWithSameState(sq);
+        logicForState(sq);
     } else {
         sq.removeClass('state-2');
         sq.addClass('state-1');
-        neighbourWithSameState(sq);
+        logicForState(sq);
     }
 
+}
+
+// maybe we need this later
+function logicForState(sq) {
+    if (logic_state == 1) {
+        neighbourWithSameState(sq);
+    } else {
+        neighbourWithSameState(sq);
+    }
 }
 
 function neighbourWithSameState(square, iterate=true) {
@@ -58,8 +77,8 @@ function neighbourWithSameState(square, iterate=true) {
     if (sq.hasClass('state-2')) { state = 'state-2'; otherState='state-1'}
 
 
-    let rowNumberUp = sq.parent().data('number') + 1;
-    let rowNumberDown = sq.parent().data('number') - 1;
+    let rowNumberUp = sq.parent().data('number') - 1;
+    let rowNumberDown = sq.parent().data('number') + 1;
     let siblings = sq.parent().children();
 
     // left, rght, up, down
@@ -98,119 +117,7 @@ function neighbourWithSameState(square, iterate=true) {
     circle.removeClass();
     sq.removeClass('invert-sq');
 
-    // with four
-    if (hasSame[0] == hasSame[1] && hasSame[1] == hasSame[2] && hasSame[2] == hasSame[3]) {
-        if (hasSame[0] == 0){
-            circle.addClass('invert');
-            circle.addClass('inner');
-            sq.addClass('invert-sq');
-        } else {
-            circle.addClass('full');
-        }
-        return;
-    }
-
-    // with three
-    // left, right, top
-    if (hasSame[0] == hasSame[1] && hasSame[1] == hasSame[2]) {
-        if (hasSame[0] == 1){
-            circle.addClass('full');
-            return;
-        }
-    }
-    // left, right, down
-    if (hasSame[0] == hasSame[1] && hasSame[1] == hasSame[3]) {
-        if (hasSame[0] == 1){
-            circle.addClass('full');
-            return;
-        }
-    }
-    // left, top, down
-    if (hasSame[0] == hasSame[2] && hasSame[2] == hasSame[3]) {
-        if (hasSame[0] == 1){
-            circle.addClass('full');
-            return;
-        }
-    }
-    // rigth, top, down
-    if (hasSame[1] == hasSame[2] && hasSame[2] == hasSame[3]) {
-        if (hasSame[1] == 1){
-            circle.addClass('full');
-            return;
-        }
-    }
-
-    // with two
-    // left, top
-    if (hasSame[0] == hasSame[2]) {
-        if (hasSame[0] == 1){
-            circle.addClass('left-down');
-            circle.addClass('invert');
-            sq.addClass('invert-sq');
-            return;
-        }
-    }
-    // left, down
-    if (hasSame[0] == hasSame[3]) {
-        if (hasSame[0] == 1){
-            circle.addClass('left-top');
-            circle.addClass('invert');
-            sq.addClass('invert-sq');
-            return;
-        }
-    }
-    // rigth, top
-    if (hasSame[1] == hasSame[2]) {
-        if (hasSame[1] == 1){
-            circle.addClass('right-down');
-            circle.addClass('invert');
-            sq.addClass('invert-sq');
-            return;
-        }
-    }
-    // right, down
-    if (hasSame[1] == hasSame[3]) {
-        if (hasSame[1] == 1){
-            circle.addClass('right-top');
-            circle.addClass('invert');
-            sq.addClass('invert-sq');
-            return;
-        }
-    }
-    // right, left or top, down
-    if (hasSame[1] == hasSame[0] && hasSame[1] == 1){
-        circle.addClass('full');
-        return;
-    } if (hasSame[2] == hasSame[3] && hasSame[2] == 1){
-        circle.addClass('full');
-        return;
-    }
-
-    // with one
-    if (hasSame[0] == 1) {
-        circle.addClass('left');
-        circle.addClass('invert');
-        sq.addClass('invert-sq');
-        return;
-    }
-    if (hasSame[1] == 1) {
-        circle.addClass('right');
-        circle.addClass('invert');
-        sq.addClass('invert-sq');
-        return;
-    }
-    if (hasSame[3] == 1) {
-        circle.addClass('top');
-        circle.addClass('invert');
-        sq.addClass('invert-sq');
-        return;
-    }
-    if (hasSame[2] == 1) {
-        circle.addClass('down');
-        circle.addClass('invert');
-        sq.addClass('invert-sq');
-        return;
-    }
+    setCss(sq, circle, hasSame, state)
 }
 
 function sameState( obj, state) {
@@ -219,4 +126,159 @@ function sameState( obj, state) {
 
 function invertedNeighbour(neighbour, otherState) {
     return sameState($(neighbour), otherState) && $(neighbour).hasClass('invert-sq')
+}
+
+
+function setCss(sq, circle, hasSame, state){
+    if (logic_state == 1) {
+        if (fourSided(sq, circle, ...hasSame)) { return; }
+        if (threeSided(sq, circle, ...hasSame)) { return; }
+        if (twoSided(sq, circle, ...hasSame)) { return; }
+        if (oneSided(sq, circle, ...hasSame)) { return; }
+    } else if (state == 'state-2'){
+        // if (fourOrThreeSidedLS2(sq, circle, ...hasSame)) { return; }
+        if (twoSidedLS2(sq, circle, ...hasSame)) { return; }
+        oneSidedLS2(sq, circle, ...hasSame)
+    } else {
+        $(circle).addClass('full');
+    }
+
+}
+
+// ORIGINAL
+function oneSided(sq, circle, left=0, right=0, top=0, down=0){
+    if (left) {
+        $(circle).addClass('left');
+    } else if (right) {
+        $(circle).addClass('right');
+    } else if (top) {
+        $(circle).addClass('top');
+    } else if (down) {
+        $(circle).addClass('down');
+    } else {
+        return false;
+    }
+    $(circle).addClass('invert');
+    $(sq).addClass('invert-sq');
+
+    return true;
+}
+
+function twoSided(sq, circ, left=0, right=0, top=0, down=0){
+    var circle = $(circ);
+
+    if (left == down && left == 1){
+        circle.addClass('left-down');
+    } else if (left == top && left == 1){
+        circle.addClass('left-top');
+    } else if (right == down && right == 1){
+        circle.addClass('right-down');
+    } else if (right == top && right == 1){
+        circle.addClass('right-top');
+    } else if ((right == left && right == 1) || (top == down && top == 1)){
+        circle.addClass('full');
+    } else {
+        return false;
+    }
+
+    circle.addClass('invert');
+    $(sq).addClass('invert-sq');
+
+    return true;
+}
+
+function threeSided(sq, circ, left=0, right=0, top=0, down=0){
+    var circle = $(circ);
+
+    if (left == right && right == top && left == 1){
+        circle.addClass('full');
+    } else if (left == right && right == down && left == 1){
+        circle.addClass('full');
+    } else if (left == top && top == down && left == 1){
+        circle.addClass('full');
+    } else if (right == top && top == down && right == 1){
+        circle.addClass('full');
+    } else {
+        return false;
+    }
+
+    return true;
+}
+
+function fourSided(sq, circ, left=0, right=0, top=0, down=0){
+    if (left == right && right == top && top == down) {
+        var circle = $(circ);
+        if (left == 0){
+            circle.addClass('invert');
+            circle.addClass('inner');
+            $(sq).addClass('invert-sq');
+        } else {
+            circle.addClass('full');
+        }
+        return true;
+    }
+
+    return false
+}
+
+
+// CIRCLES
+
+function fourOrThreeSidedLS2(sq, circ, left=0, right=0, top=0, down=0){
+    var circle = $(circ);
+    // Do nothing
+    if (left == right && right == top && left == 1){
+        circle.addClass('invert');
+        circle.addClass('inner');
+        $(sq).addClass('invert-sq');
+    } else if (left == right && right == down && left == 1){
+        circle.addClass('invert');
+        circle.addClass('inner');
+        $(sq).addClass('invert-sq');
+    } else if (left == top && top == down && left == 1){
+        circle.addClass('invert');
+        circle.addClass('inner');
+        $(sq).addClass('invert-sq');
+    } else if (right == top && top == down && right == 1){
+        circle.addClass('invert');
+        circle.addClass('inner');
+        $(sq).addClass('invert-sq');
+    } else {
+        return false;
+    }
+}
+
+function twoSidedLS2(sq, circ, left=0, right=0, top=0, down=0){
+    var circle = $(circ);
+
+    if ((right == left && right == 1) || (top == down && top == 1)){
+        circle.addClass('invert');
+        circle.addClass('inner');
+        $(sq).addClass('invert-sq');
+        return true;
+    }
+
+    if (left == down && left == 1){
+        circle.addClass('left-down-s2');
+    } else if (left == top && left == 1){
+        circle.addClass('left-top-s2');
+    } else if (right == down && right == 1){
+        circle.addClass('right-down-s2');
+    } else if (right == top && right == 1){
+        circle.addClass('right-top-s2');
+    } else {
+        return false;
+    }
+
+    circle.addClass('invert');
+    $(sq).addClass('invert-sq');
+
+    return true;
+}
+
+function oneSidedLS2(sq, circle, left=0, right=0, top=0, down=0){
+    $(circle).addClass('invert');
+    circle.addClass('inner');
+    $(sq).addClass('invert-sq');
+    return true;
 }

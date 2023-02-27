@@ -40,13 +40,13 @@ body {
 
 .state-1 div {
     background-color: var(--state-2-color);
-    width: 3vw;
-    height: 3vw;
+    width: 100%;
+    height: 100%;
 }
 .state-2 div {
     background-color: var(--state-1-color);
-    width: 3vw;
-    height: 3vw;
+    width: 100%;
+    height: 100%;
 }
 
 .inner {
@@ -98,4 +98,18 @@ body {
 .down {
     border-top-left-radius: var(--border-radius-small);
     border-top-right-radius: var(--border-radius-small);
+}
+
+/* logic-state 2 */
+.right-down-s2 {
+    border-top-left-radius: 3vw;
+}
+.left-down-s2 {
+    border-top-right-radius: 3vw;
+}
+.right-top-s2 {
+    border-bottom-left-radius: 3vw;
+}
+.left-top-s2 {
+    border-bottom-right-radius: 3vw;
 }
