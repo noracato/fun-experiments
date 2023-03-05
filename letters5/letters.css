@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: black;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+input {
+    width: 1px;
+    margin: -10px;
+    background-color: #000;
+    color: #eee;
+    border: none;
+    border-color: transparent;
+    outline: none;
+}
+
+#typeme {
+    position: absolute;
+    font-size: 60px;
+    top: 33vh;
+    left: 50px;
+    text-decoration: underline;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top:-150px;
+}
+.row {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100vw;
+    height: 190px;
+}
+
+.reverse {
+    flex-direction: row;
+    margin-left: -10px;
+}
+
+.field {
+    font-size: 60px;
+    width: 20px;
+    opacity: 0;
+}
+
+.filled-1 {
+    font-size: 360px;
+}
+.appear {
+    opacity: 1;
+    transition: opacity cubic-bezier(0.86, 0, 0.07, 1) 0.5s;
+}
+
+.header {
+    margin-top: -20px;
+}
+
+.animate-it {
+    width: 150px;
+    transition: width cubic-bezier(0.86, 0, 0.07, 1) 2s .5s;
+}
+
+.animate-ciao {
+    width: 50px;
+    transition: width cubic-bezier(0.86, 0, 0.07, 1) 2s .5s;
+}
