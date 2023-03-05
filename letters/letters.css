@@ -31,6 +31,12 @@ body {
     font-size: 360px;
 }
 
+/* color the letters for your brain to form a word  */
+.filled-super {
+    font-size: 120px;
+    color: #ff5d00;
+}
+
 input {
     width: 100vw;
     background-color: #000;
