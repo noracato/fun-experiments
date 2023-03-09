@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link rel="stylesheet" href="negative.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="negative.js"></script>
+  </head>
+  <body>
+    <div class="header">
+        <p style="font-weight: 900;">R</p>
+        <p>collecting descriptions of blobs</p>
+    </div>
+    <div class="container">
+        <img class="map" src="assets/map.png"/>
+        <div class="row">
+            <div class="form">
+                <div class="row">
+                    <label for="letters">What do you see?</label>
+                    <button id="submit">Add my answer</button>
+                </div>
+                <input type="text" id="letters" name="letters" autofocus>
+            </div>
+            <div class="form results">
+                <div class="row">
+                    <h3>Previous answers</h3>
+                    <button id="hide-results">show/hide</button>
+                </div>
+                <div id="results" class="transparent">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+  </body>
+</html>
