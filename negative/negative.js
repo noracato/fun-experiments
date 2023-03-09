@@ -27,6 +27,7 @@ function addAnswer() {
     $('#letters')[0].value = '';
     $('#results').prepend(newAnswer);
     $('#letters')[0].focus();
+    $('#hide-results').show();
     currentStorage.push(newValue);
     localStorage.setItem(localStorageItemName+currentMap, currentStorage);
 }
@@ -48,8 +49,10 @@ function setUpStorage() {
             let newAnswer = $('<p>'+currentStorage[i]+'</p>');
             $('#results').prepend(newAnswer);
         }
+        $('#hide-results').show();
     } else {
         currentStorage = [];
+        $('#hide-results').hide();
     }
 }
 
