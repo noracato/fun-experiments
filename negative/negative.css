@@ -21,20 +21,36 @@ body {
 .container {
     width: 60vw;
     margin: 0 auto;
-    margin-top: 90px;
+    /* margin-top: 90px; */
     padding: 20px;
     background-color: white;
     border: 1px solid #ff6000;
     border-radius: 10px;
 }
 
+button#next {
+    margin-left: auto;
+    width: 80px;
+    color: #ff6000;
+    border-color: #ff6000;
+}
+button#next:hover {
+    color: #5f04b9;
+    border-color: #5f04b9;
+}
+
+.with-next {
+    display: flex;
+    width: 60vw;
+    margin: 80px auto 10px auto;
+    padding-left: 40px;
+}
+
 .map {
-    transform: scaleY(-1);
     width: 100%;
 }
 
 .form {
-    margin-top: 75px;
     display: flex;
     flex-direction: column;
     width: 360px;
