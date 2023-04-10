@@ -23,6 +23,32 @@ a {
     color: #453a6f;
 }
 
+.ingredients {
+    background-color: white;
+    width: 358px;
+    padding: 10px 20px;
+    height: 178px;
+    position: absolute;
+    top: 801px;
+    left: 2px;
+}
+
+.big-letter {
+    color: #453a6f;
+    width: 200px;
+    height: 190px;
+    position: absolute;
+    font-size: 130px;
+    text-align: center;
+    padding-top: 10px;
+    left: 2px;
+}
+.big-letter:hover {
+    cursor: default;
+    color: #fff;
+    background-color: #ff6000;
+}
+
 
 @keyframes appear {
     0% {
@@ -150,7 +176,7 @@ a {
     background-color: #fff;
 }
 
-.pill.down {
+.down {
     top: 120vh !important;
     transition: top cubic-bezier(0.215, 0.610, 0.355, 1) 3s;
 }
@@ -255,9 +281,9 @@ a {
 }
 .soon {
     position: absolute;
-    left: 766px;
+    left: 716px;
     color: #fff;
-    top: 462px;
+    top: 433px;
     font-size: 3rem;
 }
 
@@ -271,6 +297,7 @@ a {
     top:  402px;
     left: 602px;
     z-index: -1;
+    animation: 30s ease-out 0s 1 appear;
 }
 
 .gummy {
@@ -278,20 +305,44 @@ a {
     height: 200px;
     position: absolute;
     background-color: #ff6000;
+    border-radius: 30%;
+    animation: 1.5s ease-out 0s 1 appear;
 }
 .gummy:hover {
     cursor: pointer;
 }
+.gummy::after {
+    content: "";
+    height: 99px;
+    width: 99px;
+    border: 1px solid #e8fcff;
+    border-radius: 34px;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
 
-.border-top-left {
-    border-top-left-radius: 30%;
+.gummy:hover::after {
+    animation: 3s infinite bouncy;
 }
-.border-top-right {
-    border-top-right-radius: 30%;
-}
-.border-bottom-left {
-    border-bottom-left-radius: 30%;
-}
-.border-bottom-right {
-    border-bottom-right-radius: 30%;
+
+@keyframes bouncy {
+    from {
+        top: 50px;
+        left: 50px;
+        height: 99px;
+        width: 99px;
+    }
+    50% {
+        top: 55px;
+        left: 45px;
+        height: 90px;
+        width: 109px;
+    }
+    to {
+        top: 50px;
+        left: 50px;
+        height: 99px;
+        width: 99px;
+    }
 }

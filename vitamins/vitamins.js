@@ -15,6 +15,8 @@ function start(){
 
 function emptyScreen(){
     $('.pill').addClass('down');
+    $('.gummy').addClass('down');
+    $('.instructions').addClass('down');
     setTimeout(function(){
         window.location.href = 'index.html'
     }, 3200)
@@ -69,7 +71,7 @@ function movieScreen() {
         $('.fill-up').addClass('down');
         $('#empty').addClass('swallowed');
         setTimeout(function() {
-            $('body').append($('<div class="soon">Starting soon</div>'));
+            $('body').append($('<div class="soon">Artwork by Nico Ni </br> Starting soon</div>'));
         }, 3000)
     }, 3000)
 }
