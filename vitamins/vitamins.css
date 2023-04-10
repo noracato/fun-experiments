@@ -1,0 +1,241 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    margin: 0;
+    background-color: #e8fcff;
+
+    background: linear-gradient(90deg, #ff6000 1px, transparent 1px) 1px 0, linear-gradient(#ff6000 1px, transparent 1px) 1px 0, #e8fcff;
+    background-size: 200px 1px, 1px 200px;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.label {
+    width: 175px;
+    height: 193px;
+    position: absolute;
+    top: 201px;
+    left: 402px;
+    padding-left: 14px;
+    padding-top: 5px;
+    padding-right: 10px;
+    background-color:white;
+}
+
+.label:hover {
+    cursor: pointer;
+}
+
+.label:hover h3 {
+    text-decoration: underline;
+}
+
+.label#super-b {
+    top: 601px;
+    left: 1002px;
+}
+
+.label#women {
+    top: 401px;
+    left: 1202px;
+}
+
+.label.cancelled {
+    background-color: #f7f7f7;
+    color: #453a6f;;
+}
+.label.cancelled:hover{
+    cursor: default;
+}
+.label.cancelled:hover h3{
+    text-decoration: none;
+}
+.label.cancelled::after {
+    content: "";
+    position: absolute;
+    top: 98px;
+    width: 281px;
+    transform: rotate(45deg);
+    border: 0.5px solid #ff6000;
+    left: -42px;
+}
+
+.header-label {
+    width: 100vw;
+    height: 190px;
+    padding-top: 10px;
+    padding-left: 33px;
+    background-color: #fff;
+}
+
+.pill {
+    width: 188px;
+    height: 188px;
+    position: absolute;
+    padding: 5px;
+    border: 1px solid #ff6000;
+    border-radius: 150px;
+
+}
+
+.pill:hover {
+    background-color: #ff6000;
+    cursor: pointer;
+}
+
+.pill:hover a{
+    background-color: #fff;
+    animation: 3s infinite spinning;
+}
+
+.pill#empty {
+    top: 201px;
+    left: 402px;
+}
+
+.pill#start {
+    top: 401px;
+    left: 802px;
+}
+.pill#start-2 {
+    top: 601px;
+    left: 1002px;
+}
+
+.pill a {
+    position: relative;
+    top: 82px;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #ff6000;
+    transform: rotate(45deg);
+    color: #ff6000;
+
+}
+.pill#start a {
+    transform: rotate(-33deg);
+    top: 85px;
+}
+.pill#start-2 a {
+    transform: rotate(-107deg);
+    top: 85px;
+}
+.pill a:hover {
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.pill.down {
+    top: 120vh !important;
+    transition: top cubic-bezier(0.215, 0.610, 0.355, 1) 3s;
+}
+
+.swallowed {
+    opacity: 0;
+    transition: opacity cubic-bezier(0.445, 0.05, 0.55, 0.95) 1s;
+}
+
+.juice {
+    width: 388px;
+    height: 600px;
+    position: absolute;
+    top: 401px;
+    left: 1002px;
+}
+.juice:hover {
+    cursor: pointer;
+}
+
+.juice .top {
+    position: relative;
+    width: 398px;
+    height: 198px;
+    border: 1px solid #ff6000;
+    border-radius: 50%;
+    background-color: #e8fcff;
+}
+.juice .juicy {
+    position: relative;
+    bottom: 0;
+    width: 398px;
+    height: 198px;
+    background-color: #ff6000;
+    border: 1px solid #e8fcff;
+    border-radius: 50%;
+}
+.juice .fluid {
+    position: absolute;
+    bottom: 100px;
+    width: 398px;
+    height: 198px;
+    background-color: #ff6000;
+    border: 1px solid #ff6000;
+    z-index: -1;
+}
+
+.juice .bottom {
+    position: relative;
+    bottom: 0;
+    width: 398px;
+    height: 198px;
+    background-color: #ff6000;
+    border: 1px solid #ff6000;
+    border-radius: 50%;
+}
+
+.drinking .juicy {
+    bottom: -200px;
+    transition: bottom cubic-bezier(0.19, 1, 0.22, 1) 2s;
+}
+.drinking .fluid {
+    height: 0;
+    transition: height cubic-bezier(0.19, 1, 0.22, 1) 2s;
+}
+
+.spin a {
+    animation: 3s infinite spinning;
+}
+
+@keyframes spinning {
+    from {
+        transform: rotate(45deg);
+    }
+
+    to {
+        transform: rotate(405deg);
+    }
+}
+
+.go-right {
+    left: 1202px !important;
+    transition: left cubic-bezier(0.165, 0.84, 0.44, 1) 2s;
+}
+
+.fill-up {
+    height: 198px;
+    width: 0;
+    position: absolute;
+    background-color:  #ff6000;
+    top: 201px;
+    left: 402px;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition-property: width, height;
+    transition-duration: 3s;
+}
+.fill-up.start {
+    width: 1000px;
+}
+.fill-up.down {
+    height: 600px;
+}
+.soon {
+    position: absolute;
+    left: 766px;
+    color: #fff;
+    top: 462px;
+    font-size: 3rem;
+}
