@@ -260,3 +260,38 @@ a {
     top: 462px;
     font-size: 3rem;
 }
+
+
+.instructions {
+    width: 718px;
+    height: 558px;
+    padding: 20px 40px;
+    background-color: #fff;
+    position: absolute;
+    top:  402px;
+    left: 602px;
+    z-index: -1;
+}
+
+.gummy {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    background-color: #ff6000;
+}
+.gummy:hover {
+    cursor: pointer;
+}
+
+.border-top-left {
+    border-top-left-radius: 30%;
+}
+.border-top-right {
+    border-top-right-radius: 30%;
+}
+.border-bottom-left {
+    border-bottom-left-radius: 30%;
+}
+.border-bottom-right {
+    border-bottom-right-radius: 30%;
+}

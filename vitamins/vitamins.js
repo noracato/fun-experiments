@@ -6,6 +6,11 @@ function start(){
     if ($('#timer').length) {
         countDown()
     }
+    if ($('.gummy').length) {
+        $('.gummy').click(function(e){
+            $(e.target).addClass('swallowed');
+        })
+    }
 }
 
 function emptyScreen(){
