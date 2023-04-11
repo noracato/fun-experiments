@@ -71,7 +71,7 @@ function movieScreen() {
         $('.fill-up').addClass('fall-down');
         $('#empty').addClass('swallowed');
         setTimeout(function() {
-            $('body').append($('<div class="soon">Artwork by Nicolette Ni </br> Starting soon</div>'));
+            $('body').append($('<div class="soon">Performance by Nicolette Ni</div>'));
         }, 3000)
     }, 3000)
 }
