@@ -276,12 +276,12 @@ a {
 .fill-up.start {
     width: 1000px;
 }
-.fill-up.down {
+.fill-up.fall-down {
     height: 600px;
 }
 .soon {
     position: absolute;
-    left: 716px;
+    left: 682px;
     color: #fff;
     top: 433px;
     font-size: 3rem;

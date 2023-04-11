@@ -68,7 +68,7 @@ function movieScreen() {
     },50)
 
     setTimeout(function() {
-        $('.fill-up').addClass('down');
+        $('.fill-up').addClass('fall-down');
         $('#empty').addClass('swallowed');
         setTimeout(function() {
             $('body').append($('<div class="soon">Artwork by Nicolette Ni </br> Starting soon</div>'));
