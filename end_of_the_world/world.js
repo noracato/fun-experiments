@@ -82,6 +82,8 @@ recognition.onnomatch = function(event) {
 
 recognition.onerror = function(event) {
   console.log('Error occurred in recognition: ' + event.error);
+  // make im listening go away
+  document.querySelector('.listening').classList.remove('active');
 }
 
 
