@@ -42,4 +42,8 @@ p {
     p {
         font-size: 1.5em;
     }
+    .container {
+        width: 60vw;
+        margin: 13vh 20vw;
+    }
 }
