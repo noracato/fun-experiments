@@ -49,7 +49,8 @@ recognition.onresult = function(event) {
   // The second [0] returns the SpeechRecognitionAlternative at position 0.
   // We then return the transcript property of the SpeechRecognitionAlternative object
   console.log(event)
-  var result = event.results[0][0].transcript;
+
+  var result = event.results[event.resultIndex][0].transcript;
 
   // Check for keywords
   const findOne = (haystack, arr) => {
@@ -61,6 +62,8 @@ recognition.onresult = function(event) {
   if (go) {
     goodbye.play();
   }
+
+  // TODO: in safari keeps hanging on last result -> always check if resultIndex is 0!
 
   console.log('Result received: ' + result + '.');
   console.log(go);
