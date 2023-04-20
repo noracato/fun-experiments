@@ -3,12 +3,15 @@ body {
     margin: 0;
     background-color: #ceba0c;
     overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
 }
 
 .container {
-    width: 100vw;
-    height: 100vh;
-    padding: 20vh 20vw;
+    width: 50vw;
+    height: 50vh;
+    margin: 25vh 25vw;
 }
 h1 {
     font-size: 7em;
