@@ -25,15 +25,15 @@ var audiosWeWantToUnlock = [];
 let goodbye = new Audio('assets/goodbye.mp3');
 audiosWeWantToUnlock.push(goodbye);
 
-document.body.addEventListener('touchstart', function() { if(audiosWeWantToUnlock) {  for(let audio of audiosWeWantToUnlock) {
-  audio.play()
-  audio.pause()
-  audio.currentTime = 0  }  audiosWeWantToUnlock = null}}, false)
-
 // Safari hack end
 
 document.body.onclick = function() {
     // TODO: prevent default + check if already started
+    if(audiosWeWantToUnlock) {  for(let audio of audiosWeWantToUnlock) {
+      audio.play()
+      audio.pause()
+      audio.currentTime = 0  }  audiosWeWantToUnlock = null}
+
   recognition.start();
   console.log('Ready to receive the end of the world.');
   document.querySelector('.listening').classList.add('active');
@@ -81,7 +81,7 @@ recognition.onnomatch = function(event) {
 }
 
 recognition.onerror = function(event) {
-  diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
+  console.log('Error occurred in recognition: ' + event.error);
 }
 
 
