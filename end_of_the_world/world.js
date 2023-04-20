@@ -3,7 +3,8 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 
-var keywords = [ 'world'];
+var goodbyeQue = [ 'world'];
+var fine = ['fine'];
 
 var recognition = new SpeechRecognition();
 if (SpeechGrammarList) {
@@ -15,7 +16,7 @@ if (SpeechGrammarList) {
   // speechRecognitionList.addFromString(grammar, 1);
   recognition.grammars = speechRecognitionList;
 }
-recognition.continuous = false;
+recognition.continuous = true;
 recognition.lang = 'en-US';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
@@ -39,6 +40,7 @@ document.body.onclick = function() {
   document.querySelector('.listening').classList.add('active');
 }
 
+// recognition.addEventListener('end', () => recognition.start());
 recognition.onresult = function(event) {
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
   // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
@@ -57,24 +59,26 @@ recognition.onresult = function(event) {
     return arr.some(v => haystack.includes(v));
   };
 
-  var go = findOne(keywords, result.split(' '));
+  var go = findOne(goodbyeQue, result.split(' '));
 
   if (go) {
     goodbye.play();
+  } else if (result === "I feel fine"){
+    console.log('ciao')
   }
 
   // TODO: in safari keeps hanging on last result -> always check if resultIndex is 0!
 
   console.log('Result received: ' + result + '.');
-  console.log(go);
+  console.log(result === "I feel fine.");
   console.log('Confidence: ' + event.results[0][0].confidence);
 }
 
-recognition.onspeechend = function() {
-    // TODO: don't stop but listen again :)
-  recognition.stop();
-  document.querySelector('.listening').classList.remove('active');
-}
+// recognition.onspeechend = function() {
+//     // TODO: don't stop but listen again :)
+//   // recognition.start();
+//   // document.querySelector('.listening').classList.remove('active');
+// }
 
 recognition.onnomatch = function(event) {
   diagnostic.textContent = "I didn't recognise that color.";
