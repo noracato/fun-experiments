@@ -2,6 +2,8 @@
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+var synth;
+
 
 var goodbyeQue = [ 'world'];
 var fine = ['fine'];
@@ -63,22 +65,19 @@ recognition.onresult = function(event) {
 
   if (go) {
     goodbye.play();
-  } else if (result === "I feel fine"){
-    console.log('ciao')
+  } else if (findOne(fine, result.split(' '))){
+    playByText("en-US", "it's the end of the world and I feel fine");
   }
 
-  // TODO: in safari keeps hanging on last result -> always check if resultIndex is 0!
+  // TODO: in safari we need to do the preloading trick?
 
   console.log('Result received: ' + result + '.');
-  console.log(result === "I feel fine.");
   console.log('Confidence: ' + event.results[0][0].confidence);
 }
 
-// recognition.onspeechend = function() {
-//     // TODO: don't stop but listen again :)
-//   // recognition.start();
-//   // document.querySelector('.listening').classList.remove('active');
-// }
+recognition.onspeechend = function() {
+  document.querySelector('.listening').classList.remove('active');
+}
 
 recognition.onnomatch = function(event) {
   diagnostic.textContent = "I didn't recognise that color.";
