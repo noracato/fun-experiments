@@ -20,7 +20,17 @@ recognition.lang = 'en-US';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
-var bg = document.querySelector('html');
+// Safari hack start
+var audiosWeWantToUnlock = [];
+let goodbye = new Audio('assets/goodbye.mp3');
+audiosWeWantToUnlock.push(goodbye);
+
+document.body.addEventListener('touchstart', function() { if(audiosWeWantToUnlock) {  for(let audio of audiosWeWantToUnlock) {
+  audio.play()
+  audio.pause()
+  audio.currentTime = 0  }  audiosWeWantToUnlock = null}}, false)
+
+// Safari hack end
 
 document.body.onclick = function() {
     // TODO: prevent default + check if already started
@@ -49,8 +59,7 @@ recognition.onresult = function(event) {
   var go = findOne(keywords, result.split(' '));
 
   if (go) {
-    var audio = new Audio('assets/goodbye.mp3');
-    audio.play();
+    goodbye.play();
   }
 
   console.log('Result received: ' + result + '.');
@@ -71,3 +80,5 @@ recognition.onnomatch = function(event) {
 recognition.onerror = function(event) {
   diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
 }
+
+
