@@ -38,7 +38,7 @@ audiosWeWantToUnlock.push(goodbye);
 
 // Safari hack end
 
-document.body.onclick = function() {
+function startListening() {
     // TODO: prevent default + check if already started
     if(audiosWeWantToUnlock) {  for(let audio of audiosWeWantToUnlock) {
       audio.play()
@@ -47,7 +47,8 @@ document.body.onclick = function() {
 
   recognition.start();
   console.log('Ready to receive the end of the world.');
-  document.querySelector('.listening').classList.add('active');
+  document.querySelector('.listening').classList.remove('inactive');
+  document.querySelector('.start').classList.add('inactive');
 }
 
 // recognition.addEventListener('end', () => recognition.start());
@@ -84,7 +85,8 @@ recognition.onresult = function(event) {
 }
 
 recognition.onspeechend = function() {
-  document.querySelector('.listening').classList.remove('active');
+  document.querySelector('.listening').classList.add('inactive');
+  document.querySelector('.start').classList.remove('inactive');
 }
 
 recognition.onnomatch = function(event) {
@@ -94,7 +96,8 @@ recognition.onnomatch = function(event) {
 recognition.onerror = function(event) {
   console.log('Error occurred in recognition: ' + event.error);
   // make im listening go away
-  document.querySelector('.listening').classList.remove('active');
+  document.querySelector('.listening').classList.add('inactive');
+  document.querySelector('.start').classList.remove('inactive');
 }
 
 

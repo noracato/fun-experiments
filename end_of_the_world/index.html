@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>End of the world</title>
+
+    <link rel="stylesheet" href="main.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="divider">
+        <p>INSTRUCTIONS</p>
+      </div>
+      <div class="buttons">
+        <div class="row">
+          <p class="link">View instructions ➙</p>
+        </div>
+      </div>
+
+      <div class="divider">
+        <p>SOUNDBANK</p>
+      </div>
+      <div class="buttons">
+          <!-- <a id="text" onclick="playSound('text')"><p>1</p></a> -->
+          <div class="row">
+            <a id="intro" onclick="playSound('intro')"><p>2</p></a>
+            <a id="beat" onclick="playSound('beat')"><p>3</p></a>
+          </div>
+          <div class="row">
+            <a id="goodbye" onclick="playSound('goodbye')"><p>4</p></a>
+            <a id="speech" onclick="playSound('speech')"><p>5</p></a>
+          </div>
+          <!-- <a href="role_6.html"><p>6</p></a> -->
+      </div>
+      <div class="divider">
+        <p>DIGITAL PERFORMER</p>
+      </div>
+      <div class="buttons performer">
+        <div class="row start active">
+          <a onclick="startListening()"><p>start</p></a>
+        </div>
+        <div class="row listening inactive">
+          <a onclick="stopListening()"><p>stop</p></a>
+        </div>
+      </div>
+    </div>
+    <script src="synthesis.js"></script>
+    <script src="world.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
