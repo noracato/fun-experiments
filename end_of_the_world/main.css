@@ -32,7 +32,7 @@ body {
     display: flex;
 }
 
-.buttons a {
+.buttons .blacks a {
     font-size: 10em;
     /* padding: 2rem 5rem 2rem 5rem; */
     background-color: black;
@@ -44,11 +44,11 @@ body {
     margin: 1rem;
 }
 
-.buttons a:hover {
+.buttons .blacks a:hover {
     cursor: pointer;
 }
 
-.buttons a p {
+.buttons .blacks a p {
     color: white;
     margin: auto auto;
 }
@@ -64,4 +64,5 @@ body {
 .link {
     font-size: 4em;
     text-decoration: underline;
+    color: #000;
 }

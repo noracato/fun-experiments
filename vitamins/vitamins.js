@@ -11,6 +11,14 @@ function start(){
             $(e.target).addClass('swallowed');
         })
     }
+    if ($('.pull').length) {
+        $('.pull').click(function(e){
+            $(e.target).addClass('swallowed');
+            $(e.target).siblings().addClass('swallowed');
+            $('#instructions').addClass('appear');
+            $('#placeholder').addClass('swallowed');
+        });
+    }
 }
 
 function emptyScreen(){
@@ -78,7 +86,7 @@ function movieScreen() {
 
 
 function countDown() {
-    var countDownDate = new Date("Apr 11, 2023 21:37:25").getTime();
+    var countDownDate = new Date("Apr 18, 2023 21:37:25").getTime();
 
     // Update the count down every 1 second
     var x = setInterval(function() {

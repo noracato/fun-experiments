@@ -6,7 +6,8 @@ var synth;
 
 
 var goodbyeQue = [ 'world'];
-var fine = ['fine'];
+var fine = ['feel','fine'];
+var why = ['why'];
 
 // TODO: maybe incorporate this as a reaction, or think of something else :)
 let speech = (
@@ -67,7 +68,7 @@ recognition.onresult = function(event) {
   // These also have getters so they can be accessed like arrays.
   // The second [0] returns the SpeechRecognitionAlternative at position 0.
   // We then return the transcript property of the SpeechRecognitionAlternative object
-  console.log(event)
+
 
   var result = event.results[event.resultIndex][0].transcript;
 
@@ -81,7 +82,9 @@ recognition.onresult = function(event) {
   if (go) {
     goodbye.play();
   } else if (findOne(fine, result.split(' '))){
-    playByText("en-US", "it's the end of the world and I feel fine");
+    playByText("en-US", speech, 1.2);
+  } else if (findOne(why, result.split(' '))){
+    inAllVoices("why");
   }
 
   // TODO: in safari we need to do the preloading trick?

@@ -13,6 +13,7 @@ function loadVoicesWhenAvailable (onComplete = () => {}) {
 
   if (voices.length !== 0) {
     _voices = voices
+
     onComplete()
   } else {
     return setTimeout(function () { loadVoicesWhenAvailable(onComplete) }, 100)
@@ -40,26 +41,31 @@ function getVoices (locale) {
  * @param onEnd callback if tts is finished
  */
 
-function playByText (locale, text, onEnd) {
+function playByText (locale, text, rate, onEnd) {
   const voices = getVoices(locale)
+
 
   // TODO load preference here, e.g. male / female etc.
   // TODO but for now we just use the first occurrence
   const utterance = new window.SpeechSynthesisUtterance()
   utterance.voice = voices[0]
   utterance.pitch = 1
-  utterance.rate = 1
   utterance.voiceURI = 'native'
   utterance.volume = 1
-  utterance.rate = 1
-  utterance.pitch = 0.8
+  if (rate) {
+    utterance.rate = rate
+  } else{
+    utterance.rate = 5
+  }
+
   utterance.text = text
   utterance.lang = locale
 
   if (onEnd) {
     utterance.onend = onEnd
   }
-  console.log(utterance)
+
+  console.log(locale)
   _speechSynth.cancel() // cancel current speak, if any is running
   _speechSynth.speak(utterance)
 }
@@ -68,6 +74,12 @@ function playByText (locale, text, onEnd) {
 loadVoicesWhenAvailable(function () {
  console.log("loaded")
 })
+
+function inAllVoices(text) {
+    for (let i =0; i < _voices.length; i++){
+        setTimeout(function() {playByText(_voices[i].lang, text)}, i * 1200)
+    }
+}
 
 // function speak () {
 //   setTimeout(() => playByText("en-US", "Hello, world"), 300)
