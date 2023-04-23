@@ -8,6 +8,14 @@ var synth;
 var goodbyeQue = [ 'world'];
 var fine = ['fine'];
 
+// TODO: maybe incorporate this as a reaction, or think of something else :)
+let speech = (
+  "It's the end of the world as we know it.\n" +
+  "It's the end of the world as we know it.\n" +
+  "It's the end of the world as we know it, and I feel fine."
+)
+
+
 var recognition = new SpeechRecognition();
 if (SpeechGrammarList) {
   // SpeechGrammarList is not currently available in Safari, and does not have any effect in any other browser.
