@@ -51,6 +51,12 @@ function startListening() {
   document.querySelector('.start').classList.add('inactive');
 }
 
+function stopListening() {
+  document.querySelector('.listening').classList.add('inactive');
+  document.querySelector('.start').classList.remove('inactive');
+  recognition.stop()
+}
+
 // recognition.addEventListener('end', () => recognition.start());
 recognition.onresult = function(event) {
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
