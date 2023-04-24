@@ -77,7 +77,7 @@ loadVoicesWhenAvailable(function () {
 
 function inAllVoices(text) {
     for (let i =0; i < _voices.length; i++){
-        setTimeout(function() {playByText(_voices[i].lang, text)}, i * 1200)
+        setTimeout(function() {playByText(_voices[i].lang, text)}, i * 1000)
     }
 }
 

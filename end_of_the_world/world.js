@@ -7,7 +7,8 @@ var synth;
 
 var goodbyeQue = [ 'world'];
 var fine = ['feel','fine'];
-var why = ['why'];
+// TODO: mmm instead of why?
+var why = ['when', 'you', 'said'];
 
 // TODO: maybe incorporate this as a reaction, or think of something else :)
 let speech = (
@@ -84,7 +85,7 @@ recognition.onresult = function(event) {
   } else if (findOne(fine, result.split(' '))){
     playByText("en-US", speech, 1.2);
   } else if (findOne(why, result.split(' '))){
-    inAllVoices("why");
+    inAllVoices("mmm");
   }
 
   // TODO: in safari we need to do the preloading trick?
