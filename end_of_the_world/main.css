@@ -30,6 +30,7 @@ body {
 
 .row {
     display: flex;
+    margin: 0 auto;
 }
 
 .buttons .blacks a {
@@ -89,4 +90,24 @@ body {
 .controls.on {
     background-color: #000;
     color: #fff;
+}
+
+input {
+    width: 50vw;
+    margin: 0 auto 4rem auto;
+    background: #000;
+    height: 1rem;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 5px;
+}
+
+input::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    background-color: #000;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
 }

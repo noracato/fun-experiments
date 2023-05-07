@@ -46,7 +46,6 @@ let sounds = [
         "sound": 'бб',
         "voice": "ru-RU",
         "icon": "□",
-        "volume": 1,
     },
     {
         "keepPlaying": false,
@@ -79,6 +78,11 @@ const soundsPerRow = 3;
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
+let speed = 1000;
+$('#speedSlider').change(function (e) {
+    speed = e.target.value;
+})
+
 buildAll();
 
 function play(soundIndex){
@@ -98,7 +102,7 @@ const hold = async (soundIndex) => {
     sounds[soundIndex]["keepPlaying"] = true;
     while(sounds[soundIndex]["keepPlaying"]){
         play(soundIndex);
-        await delay(1000);
+        await delay(speed);
     }
 };
 
@@ -127,7 +131,7 @@ function buildSoundRow(startIndex, endIndex){
 }
 
 
-function buildSoundButton(index, row) {
+function buildSoundButton(index) {
     let container = $('<div></div>');
     let ball = $('<a><p>'+ sounds[index]["icon"] +'</p></a>');
     ball.click(function() { play(index); })
