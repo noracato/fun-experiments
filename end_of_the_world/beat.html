@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>End of the world</title>
+
+    <link rel="stylesheet" href="main.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="divider">
+        <p>INSTRUCTIONS</p>
+      </div>
+      <div class="buttons">
+        <div class="row">
+          <p>Create your own beat using your devices voices</p>
+        </div>
+      </div>
+
+      <div class="divider">
+        <p>CREATE</p>
+      </div>
+      <div class="buttons">
+          <!-- <a id="text" onclick="playSound('text')"><p>1</p></a> -->
+          <div class="row blacks">
+            <a id="intro" onclick="inRandomVoice('k', 5)"><p>k</p></a>
+            <a id="beat" onclick="inRandomVoice('p', 5)"><p>p</p></a>
+          </div>
+          <div class="row blacks">
+            <a id="goodbye" onclick="inRandomVoice('ts', 5)"><p>ts</p></a>
+            <a id="speech" onclick="inRandomVoice('o', 5)"><p>o</p></a>
+          </div>
+          <!-- <a href="role_6.html"><p>6</p></a> -->
+      </div>
+    </div>
+    <script src="synthesis.js"></script>
+  </body>
+</html>

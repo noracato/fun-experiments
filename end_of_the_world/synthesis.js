@@ -66,7 +66,7 @@ function playByText (locale, text, rate, onEnd) {
   }
 
   console.log(locale)
-  _speechSynth.cancel() // cancel current speak, if any is running
+//   _speechSynth.cancel() // cancel current speak, if any is running
   _speechSynth.speak(utterance)
 }
 
