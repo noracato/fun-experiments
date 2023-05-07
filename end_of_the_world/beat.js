@@ -1,7 +1,7 @@
 let sounds = [
     {
         "keepPlaying": false,
-        "sound": 'aa',
+        "sound": 'aa aa',
         "voice": "es-ES",
         "icon": "❖"
     },
