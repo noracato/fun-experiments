@@ -85,7 +85,8 @@ recognition.onresult = function(event) {
   } else if (findOne(fine, result.split(' '))){
     playByText("en-US", speech, 1.2);
   } else if (findOne(why, result.split(' '))){
-    inAllVoices("mmm");
+    // inAllVoices("mmm");
+    inRandomVoice("mmm", 4);
   }
 
   // TODO: in safari we need to do the preloading trick?

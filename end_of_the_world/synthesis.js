@@ -51,7 +51,7 @@ function playByText (locale, text, rate, onEnd) {
   utterance.voice = voices[0]
   utterance.pitch = 1
   utterance.voiceURI = 'native'
-  utterance.volume = 1
+  utterance.volume = 10
   if (rate) {
     utterance.rate = rate
   } else{
@@ -78,6 +78,16 @@ loadVoicesWhenAvailable(function () {
 function inAllVoices(text) {
     for (let i =0; i < _voices.length; i++){
         setTimeout(function() {playByText(_voices[i].lang, text)}, i * 1000)
+    }
+}
+
+function inRandomVoice(text, times) {
+    var voice;
+    for (let i =0; i < times; i++){
+        setTimeout(function() {
+            voice = _voices[Math.floor(Math.random() * _voices.length)];
+            playByText(voice.lang, text)
+        }, i * 1000)
     }
 }
 
