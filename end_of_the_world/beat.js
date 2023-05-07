@@ -13,8 +13,8 @@ let sounds = [
     },
     {
         "keepPlaying": false,
-        "sound": 'бр',
-        "voice": "ru-RU",
+        "sound": 'iao',
+        "voice": "it-IT",
         "icon": "❂"
     },
     {
