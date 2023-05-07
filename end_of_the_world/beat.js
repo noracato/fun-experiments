@@ -19,8 +19,8 @@ let sounds = [
     },
     {
         "keepPlaying": false,
-        "sound": 'кттп',
-        "voice": "ru-RU",
+        "sound": 'rrr',
+        "voice": "ro-RO",
         "icon": "✯"
     },
     {
@@ -49,8 +49,8 @@ let sounds = [
     },
     {
         "keepPlaying": false,
-        "sound": 'бк',
-        "voice": "ru-RU",
+        "sound": 'κκ',
+        "voice": "el-GR",
         "icon": "✹"
     },
     {
