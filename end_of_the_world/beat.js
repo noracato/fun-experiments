@@ -1,6 +1,24 @@
 let sounds = [
     {
         "keepPlaying": false,
+        "sound": 'штс',
+        "voice": "ru-RU",
+        "icon": "❖"
+    },
+    {
+        "keepPlaying": false,
+        "sound": 'ксж',
+        "voice": "ru-RU",
+        "icon": "✶"
+    },
+    {
+        "keepPlaying": false,
+        "sound": 'бр',
+        "voice": "ru-RU",
+        "icon": "❂"
+    },
+    {
+        "keepPlaying": false,
         "sound": 'кттп',
         "voice": "ru-RU",
         "icon": "✯"
@@ -27,7 +45,8 @@ let sounds = [
         "keepPlaying": false,
         "sound": 'бб',
         "voice": "ru-RU",
-        "icon": "□"
+        "icon": "□",
+        "volume": 1,
     },
     {
         "keepPlaying": false,
@@ -37,21 +56,21 @@ let sounds = [
     },
     {
         "keepPlaying": false,
-        "sound": 'штс',
+        "sound": 'пзк',
         "voice": "ru-RU",
-        "icon": "❖"
+        "icon": "❥"
     },
     {
         "keepPlaying": false,
-        "sound": 'ксж',
+        "sound": 'чб',
         "voice": "ru-RU",
-        "icon": "✶"
+        "icon": "❉"
     },
     {
         "keepPlaying": false,
-        "sound": 'бр',
+        "sound": 'ввв',
         "voice": "ru-RU",
-        "icon": "❂"
+        "icon": "◎"
     }
 
 ]
@@ -63,7 +82,11 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 buildAll();
 
 function play(soundIndex){
-    playByText(sounds[soundIndex]["voice"], sounds[soundIndex]["sound"])
+    playByText(
+        sounds[soundIndex]["voice"],
+        sounds[soundIndex]["sound"],
+        sounds[soundIndex]["volume"]
+    )
 }
 
 const hold = async (soundIndex) => {
