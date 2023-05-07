@@ -1,8 +1,8 @@
 let sounds = [
     {
         "keepPlaying": false,
-        "sound": 'штс',
-        "voice": "ru-RU",
+        "sound": 'll',
+        "voice": "es-ES",
         "icon": "❖"
     },
     {
@@ -25,9 +25,9 @@ let sounds = [
     },
     {
         "keepPlaying": false,
-        "sound": 'бщк',
+        "sound": 'ввв',
         "voice": "ru-RU",
-        "icon": "☙"
+        "icon": "◎"
     },
     {
         "keepPlaying": false,
@@ -37,8 +37,8 @@ let sounds = [
     },
     {
         "keepPlaying": false,
-        "sound": 'кт',
-        "voice": "ru-RU",
+        "sound": 'qa',
+        "voice": "ko-KR",
         "icon": "⁌"
     },
     {
@@ -53,25 +53,6 @@ let sounds = [
         "voice": "el-GR",
         "icon": "✹"
     },
-    {
-        "keepPlaying": false,
-        "sound": 'пзк',
-        "voice": "ru-RU",
-        "icon": "❥"
-    },
-    {
-        "keepPlaying": false,
-        "sound": 'чб',
-        "voice": "ru-RU",
-        "icon": "❉"
-    },
-    {
-        "keepPlaying": false,
-        "sound": 'ввв',
-        "voice": "ru-RU",
-        "icon": "◎"
-    }
-
 ]
 
 const soundsPerRow = 3;
