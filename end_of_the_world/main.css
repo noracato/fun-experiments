@@ -66,3 +66,17 @@ body {
     text-decoration: underline;
     color: #000;
 }
+
+.controls {
+    justify-content: space-evenly;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.controls div:hover {
+    cursor: pointer;
+}
+
+.controls .on {
+    text-decoration: underline;
+}
