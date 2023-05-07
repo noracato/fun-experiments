@@ -34,6 +34,24 @@ let sounds = [
         "sound": 'бк',
         "voice": "ru-RU",
         "icon": "✹"
+    },
+    {
+        "keepPlaying": false,
+        "sound": 'штс',
+        "voice": "ru-RU",
+        "icon": "❖"
+    },
+    {
+        "keepPlaying": false,
+        "sound": 'ксж',
+        "voice": "ru-RU",
+        "icon": "✶"
+    },
+    {
+        "keepPlaying": false,
+        "sound": 'бр',
+        "voice": "ru-RU",
+        "icon": "❂"
     }
 
 ]
