@@ -101,6 +101,7 @@ input {
     -webkit-appearance: none;
     appearance: none;
     border-radius: 5px;
+    direction: rtl
 }
 
 input::-webkit-slider-thumb {
