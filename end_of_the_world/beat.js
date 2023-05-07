@@ -31,8 +31,8 @@ let sounds = [
     },
     {
         "keepPlaying": false,
-        "sound": 'пв',
-        "voice": "ru-RU",
+        "sound": 'pk',
+        "voice": "th-TH",
         "icon": "❀"
     },
     {
@@ -43,8 +43,8 @@ let sounds = [
     },
     {
         "keepPlaying": false,
-        "sound": 'бб',
-        "voice": "ru-RU",
+        "sound": 'th',
+        "voice": "ja-JA",
         "icon": "□",
     },
     {
