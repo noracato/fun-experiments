@@ -31,8 +31,8 @@ let sounds = [
     },
     {
         "keepPlaying": false,
-        "sound": 'pk',
-        "voice": "th-TH",
+        "sound": '我',
+        "voice": "zh-HK",
         "icon": "❀"
     },
     {
