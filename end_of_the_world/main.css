@@ -65,25 +65,28 @@ body {
     font-size: 4em;
     text-decoration: underline;
     color: #000;
+    max-width: 80vw;
 }
 
 .controls {
     justify-content: space-evenly;
     font-size: 3rem;
-    margin-bottom: 1rem;
+    margin: 0 1rem 3rem 1rem;
+    border: 1px solid black;
+    padding: 5px 20px;
+    border-radius: 12px;
+    transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
 }
 
-.controls div:hover {
+.controls:hover {
     cursor: pointer;
 }
 
 .controls div {
-    border: 1px solid black;
-    padding: 5px 20px;
-    border-radius: 12px;
+   margin: 0 auto;
 }
 
-.controls .on {
+.controls.on {
     background-color: #000;
     color: #fff;
 }

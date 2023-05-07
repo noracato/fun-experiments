@@ -111,17 +111,17 @@ function buildSoundButton(index, row) {
 
     let controls = $('<div></div>');
     controls.addClass("row controls");
-
-    let holdControl = $('<div>HOLD</div>');
-    holdControl.click(function () {
-        if (holdControl.hasClass("on")){
-            holdControl.removeClass('on');
+    controls.click(function () {
+        if (controls.hasClass("on")){
+            controls.removeClass('on');
             stopPlaying(index);
         } else {
-            holdControl.addClass('on');
+            controls.addClass('on');
             hold(index);
         }
     });
+
+    let holdControl = $('<div>HOLD</div>');
 
     controls.append(holdControl);
     container.append(ball);
