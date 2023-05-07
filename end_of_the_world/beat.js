@@ -15,13 +15,13 @@ let sounds = [
         "keepPlaying": false,
         "sound": 'iao',
         "voice": "it-IT",
-        "icon": "❂"
+        "icon": "△"
     },
     {
         "keepPlaying": false,
         "sound": 'rrr',
         "voice": "ro-RO",
-        "icon": "✯"
+        "icon": "✽"
     },
     {
         "keepPlaying": false,
@@ -39,7 +39,7 @@ let sounds = [
         "keepPlaying": false,
         "sound": '브',
         "voice": "ko-KR",
-        "icon": "⁌"
+        "icon": "⦿"
     },
     {
         "keepPlaying": false,
@@ -51,7 +51,7 @@ let sounds = [
         "keepPlaying": false,
         "sound": 'κκ',
         "voice": "el-GR",
-        "icon": "✹"
+        "icon": "✸"
     },
 ]
 
