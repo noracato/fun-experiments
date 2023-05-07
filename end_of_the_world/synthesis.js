@@ -55,10 +55,9 @@ function playByText (locale, text, volume, onEnd) {
   if (volume){
     utterance.volume = volume;
   } else {
-    utterance.volume = 0.5;
+    utterance.volume = 1;
   }
 
-  console.log(utterance.volume)
   utterance.rate = 5
 
 
