@@ -1,7 +1,7 @@
 let sounds = [
     {
         "keepPlaying": false,
-        "sound": 'll',
+        "sound": 'lal',
         "voice": "es-ES",
         "icon": "❖"
     },
@@ -37,7 +37,7 @@ let sounds = [
     },
     {
         "keepPlaying": false,
-        "sound": 'qa',
+        "sound": '브',
         "voice": "ko-KR",
         "icon": "⁌"
     },
