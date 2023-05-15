@@ -41,7 +41,7 @@ function getVoices (locale) {
  * @param onEnd callback if tts is finished
  */
 
-function playByText (locale, text, volume, onEnd) {
+function playByText (locale, text, rate, onEnd) {
   const voices = getVoices(locale)
 
 
@@ -52,13 +52,13 @@ function playByText (locale, text, volume, onEnd) {
   utterance.pitch = 1
   utterance.voiceURI = 'native'
 
-  if (volume){
-    utterance.volume = volume;
+  if (rate){
+    utterance.rate = rate;
   } else {
-    utterance.volume = 1;
+    utterance.rate = 5;
   }
 
-  utterance.rate = 5
+  utterance.volume = 1
 
 
   utterance.text = text
