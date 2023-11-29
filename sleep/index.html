@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Sleep on it</title>
+<style>
+  body {
+    background-color: #ce3d04;
+  }
+
+  #sun {
+    background-color: #e6923e;
+    height: 150px;
+    width: 150px;
+    border-radius: 75px;
+    margin: 0 auto;
+  }
+
+  .building {
+    margin: 5px 0.5px 0;
+    background-color: #156;
+  }
+
+  .appartments {
+    height: 40px;
+    width: 20px;
+  }
+
+  .flat {
+    height: 60px;
+    width: 20px;
+  }
+
+  .small-house {
+    height:  20px;
+    width: 20px;
+  }
+
+  .block {
+    height: 30px;
+    width:  60px;
+  }
+
+  .row {
+    display: flex;
+    padding: 10px;
+  }
+
+  .with-homes {
+    margin: 0 100px 5px;
+    justify-content: space-between;
+    align-items: end;
+    flex-wrap: wrap;
+  }
+
+  .top {
+    height:  600px;
+  }
+
+  #game-over {
+    font-size: 300px;
+    color:  red;
+  }
+  </style>
+</head>
+<body>
+  <div class='row top'>
+    <div id='sun'></div>
+    <div id='game-over' style='display:none;'>GAME OVER!</div>
+  </div>
+
+  <div id='city' class='row with-homes'></div>
+
+
+  <script>
+    const sunMax = 460;
+    const darkBlue = '#203150';
+    const timer = 150;//25;
+    const buildingClasses = ['small-house', 'appartments', 'flat', 'block']
+    var amountOfBuildings = Math.floor(Math.random()*100) + 50;
+
+    let itIsDark = false;
+
+    for(var i = 0; i < amountOfBuildings; i++) {
+      createHome();
+    }
+
+    // Starting up
+    var sun = setInterval(function() {
+      move(document.getElementById('sun'));
+    }, timer);
+
+
+    var dark = setInterval(function() {
+      darken();
+    }, timer * 20);
+
+
+
+
+    function move(obj) {
+      obj.style['position'] = 'relative';
+
+      if (obj.style['top']) {
+        new_val = parseInt(obj.style['top'].split('px')[0]) + 1;
+      } else {
+        new_val = 1;
+      }
+
+      if (new_val == sunMax) {
+        // new_val = -100;
+        obj.style['display'] = 'none';
+        startNight();
+        // document.getElementById('game-over').style['display'] = 'block';
+        // lightSky();
+      }
+
+      obj.style['top'] = new_val + 'px';
+    }
+
+    function darken() {
+      var initial_color = document.body.style.backgroundColor || '#ce3d04'
+      document.body.style.backgroundColor = pSBC(-.05, initial_color, darkBlue, true);
+    }
+
+    function lightSky() {
+      document.body.style.backgroundColor = '#ce3d04';
+    }
+
+    function createHome() {
+      let home = document.createElement('div');
+      home.classList.add('building');
+      home.classList.add(buildingClasses[Math.floor(Math.random()*4)])
+
+      home.onclick = function() {activateBuilding(home)};
+
+      document.getElementById('city').append(home);
+    }
+
+    function activateBuilding(building) {
+      building.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+
+      var file;
+      if (!itIsDark) {
+        // Evening sounds
+        file = 'assets/' + Math.floor(Math.random()*10) + '.mp3';
+      } else {
+        // Sleep sounds
+        file = 'assets/night_' + Math.floor(Math.random()*10) + '.mp3';
+      }
+
+      new Audio(file).play();
+    }
+
+    function startNight() {
+      clearInterval(sun);
+      itIsDark = true;
+      new Audio('night.mp3').play();
+
+      setTimeout(function() {
+        clearInterval(dark);
+        document.getElementById('game-over').style['display'] = 'block';
+        var homes = document.getElementsByClassName('building');
+        for (var i = 0; i < homes.length; i++){
+          homes[i].onclick = null;
+        }
+      }, 60000)
+    }
+
+    // ?? stackoverflow
+    const pSBC=(p,c0,c1,l)=>{
+      let r,g,b,P,f,t,h,i=parseInt,m=Math.round,a=typeof(c1)=="string";
+      if(typeof(p)!="number"||p<-1||p>1||typeof(c0)!="string"||(c0[0]!='r'&&c0[0]!='#')||(c1&&!a))return null;
+      if(!this.pSBCr)this.pSBCr=(d)=>{
+          let n=d.length,x={};
+          if(n>9){
+              [r,g,b,a]=d=d.split(","),n=d.length;
+              if(n<3||n>4)return null;
+              x.r=i(r[3]=="a"?r.slice(5):r.slice(4)),x.g=i(g),x.b=i(b),x.a=a?parseFloat(a):-1
+          }else{
+              if(n==8||n==6||n<4)return null;
+              if(n<6)d="#"+d[1]+d[1]+d[2]+d[2]+d[3]+d[3]+(n>4?d[4]+d[4]:"");
+              d=i(d.slice(1),16);
+              if(n==9||n==5)x.r=d>>24&255,x.g=d>>16&255,x.b=d>>8&255,x.a=m((d&255)/0.255)/1000;
+              else x.r=d>>16,x.g=d>>8&255,x.b=d&255,x.a=-1
+          }return x};
+      h=c0.length>9,h=a?c1.length>9?true:c1=="c"?!h:false:h,f=this.pSBCr(c0),P=p<0,t=c1&&c1!="c"?this.pSBCr(c1):P?{r:0,g:0,b:0,a:-1}:{r:255,g:255,b:255,a:-1},p=P?p*-1:p,P=1-p;
+      if(!f||!t)return null;
+      if(l)r=m(P*f.r+p*t.r),g=m(P*f.g+p*t.g),b=m(P*f.b+p*t.b);
+      else r=m((P*f.r**2+p*t.r**2)**0.5),g=m((P*f.g**2+p*t.g**2)**0.5),b=m((P*f.b**2+p*t.b**2)**0.5);
+      a=f.a,t=t.a,f=a>=0||t>=0,a=f?a<0?t:t<0?a:a*P+t*p:0;
+      if(h)return"rgb"+(f?"a(":"(")+r+","+g+","+b+(f?","+m(a*1000)/1000:"")+")";
+      else return"#"+(4294967296+r*16777216+g*65536+b*256+(f?m(a*255):0)).toString(16).slice(1,f?undefined:-2)
+  }
+
+  </script>
+
+</body>
+</html>
